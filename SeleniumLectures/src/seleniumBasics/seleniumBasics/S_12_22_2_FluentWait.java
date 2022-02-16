@@ -26,6 +26,8 @@ public class S_12_22_2_FluentWait {
 				.pollingEvery(Duration.ofSeconds(1))
 				.withMessage("Check your locator for this element");
 		
+		FluentWait waiting = new FluentWait (driver); // another way to initiate the FluentWait
+		
 		//When we tried to get that text and printed, it didn't work
 		//because the element we were trying to locate was an AJAX element, and it is
 		//not loaded with the rest of the page

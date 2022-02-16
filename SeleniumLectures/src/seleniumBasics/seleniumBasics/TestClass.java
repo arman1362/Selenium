@@ -21,7 +21,7 @@ public class TestClass extends S_12_28_3_Utilities {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.manage().window().maximize();
 
-		driver.get("https://facebook.com");
+		driver.get("https://www.hyrtutorials.com/p/window-handles-practice.html");
 
 		driver.findElement(By.xpath("//a[text()= 'Create new account']")).click();
 		

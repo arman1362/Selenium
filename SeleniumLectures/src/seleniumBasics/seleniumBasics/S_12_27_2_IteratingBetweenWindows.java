@@ -25,7 +25,7 @@ public class S_12_27_2_IteratingBetweenWindows {
 		//We click to open the next window (child window)
 		driver.findElement(By.id("newWindowBtn")).click();
 	
-		//we are storing our window (the parent and any child after that) here
+		//we are storing our windows (the parent and any child after that) here
 	
 		Set<String> allWindows = driver.getWindowHandles();
 		

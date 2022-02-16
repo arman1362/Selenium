@@ -28,9 +28,9 @@ public class S_12_22_9_ActionsClassPressShiftAndClick {
 		hover.moveToElement(searchBar)
 		.keyDown(searchBar, Keys.SHIFT)
 		.sendKeys(searchBar, "selenium")
-		.keyUp(searchBar, Keys.SHIFT)
+		.keyUp(searchBar, Keys.SHIFT) // removing this line will make no difference
 		.click (searchButton)
-		.build().perform();
+		.build().perform(); //removing build will not make a difference
 
 		Thread.sleep(6000);
 		driver.close();
