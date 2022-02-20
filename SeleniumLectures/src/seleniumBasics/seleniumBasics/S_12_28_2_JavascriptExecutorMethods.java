@@ -10,7 +10,7 @@ public class S_12_28_2_JavascriptExecutorMethods extends S_12_28_3_Utilities {
 		
 		compareText ("Truth", "Fact" + ": ");
 
-		launchBrowser("https://www.amazon.com/");
+		launchChrome("https://www.amazon.com/");
 
 		WebElement bestSeller = driver.findElement(By.linkText("Best Sellers"));
 		WebElement textBox = driver.findElement(By.id("twotabsearchtextbox"));

@@ -36,14 +36,16 @@ public class S_12_20_5_PrintingBestSellersinAmazon {
 		for (int i = 0; i < allItems.size(); i++) {
 			listOfItems.add(allItems.get(i).getText());
 		}
-		
+
 		System.out.println(listOfItems);
+
+		for (int i = 0; i < allItems.size(); i++) {
+		}
+		allItems.get(4).click(); // clicking on item 4
 
 		Thread.sleep(6000);
 		driver.close();
 
 		// the following will start from the next
-
 	}
-
 }

@@ -24,13 +24,13 @@ public class S_12_27_3_IteratingBetweenTabs {
         
         driver.findElement(By.id("newTabBtn")).click();
      
-        Set<String> allWindows = driver.getWindowHandles();
-        Iterator<String> itr = allWindows.iterator();
+        Set<String> allTabs = driver.getWindowHandles();
+        Iterator<String> itr = allTabs.iterator();
         
-        String parentWindow = itr.next();
-        String childWindow = itr.next();
+        String parentTab = itr.next();
+        String childTab = itr.next();
         
-        driver.switchTo().window(childWindow);
+        driver.switchTo().window(childTab);
       
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); 
 		// if there is no explicit wait, it is highly likely that the alert will not be clicked (accepted)
@@ -41,12 +41,12 @@ public class S_12_27_3_IteratingBetweenTabs {
         
         driver.switchTo().alert().accept();
               
-        driver.switchTo().window(parentWindow);
+        driver.switchTo().window(parentTab);
         WebElement text = driver.findElement(By.xpath("//h3[text()='Button2']"));
         System.out.println(text.getText());
         
-        System.out.println("This is Parent: " + parentWindow);
-        System.out.println("This is Child: " + childWindow);
+        System.out.println("This is Parent: " + parentTab);
+        System.out.println("This is Child: " + childTab);
         
         Thread.sleep(2000);
         driver.quit();

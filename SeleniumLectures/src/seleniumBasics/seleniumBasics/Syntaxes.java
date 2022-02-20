@@ -45,9 +45,13 @@ System.setProperty("webdriver.chrome.driver", ".\\drivers\\\\chromedriver.exe");
 		http://tek-school.com/retail/index.php?route=product/category&path=33
 		driver.findElement(By.xpath("//div[starts-with(@class,'collapse')]"));
 		
-	
+		// or
+		https://demo.guru99.com/test/selenium-xpath.html
+		driver.findElement(By.xpath("//*[@type='submit' or @name='btnReset']"));
 		
-		
+		// and
+		https://demo.guru99.com/test/selenium-xpath.html
+		driver.findElement(By.xpath("//input[@type='submit' and @name='btnLogin']"));
 		
 		
 		

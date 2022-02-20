@@ -14,7 +14,7 @@ public class S_12_28_1_HandlingiFrames extends S_12_28_3_Utilities{
     	
     	// https://www.hostinger.com/tutorials/what-is-iframe/
         
-    	 launchBrowser ("https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert2");
+    	 launchChrome ("https://www.w3schools.com/js/tryit.asp?filename=tryjs_alert2");
 
          WebElement frame= driver.findElement(By.xpath("//iframe[@id='iframeResult']"));
          

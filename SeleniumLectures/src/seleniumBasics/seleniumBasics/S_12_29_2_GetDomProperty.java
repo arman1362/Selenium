@@ -8,7 +8,7 @@ public class S_12_29_2_GetDomProperty extends S_12_28_3_Utilities {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		launchBrowser("https://www.makemytrip.com/");
+		launchChrome("https://www.makemytrip.com/");
 		driver.findElement(By.xpath("//span[text()='DEPARTURE']")).click();
 		Thread.sleep(2000);
 		scrollDownBy();

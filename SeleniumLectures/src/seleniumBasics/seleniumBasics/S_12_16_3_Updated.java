@@ -8,7 +8,7 @@ public class S_12_16_3_Updated extends S_12_28_3_Utilities{
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
-		launchBrowser("http://tek-school.com/retail/");
+		launchChrome("http://tek-school.com/retail/");
 		
 		WebElement myAccount = driver.findElement(By.xpath("//span[text()='My Account']"));
 		takeScreenShot("MyAccount");

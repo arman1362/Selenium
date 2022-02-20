@@ -1,37 +1,27 @@
 package seleniumBasics;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.JavascriptExecutor;
 
-public class TestClass extends S_12_28_3_Utilities {
-
-	public static void main(String[] args) throws InterruptedException {
-
-		System.setProperty("webdriver.chrome.drive", ".//drivers////ChromeDriver.exe");
-
-		WebDriver driver = new ChromeDriver();
-
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.manage().window().maximize();
-
-		driver.get("https://www.hyrtutorials.com/p/window-handles-practice.html");
-
-		driver.findElement(By.xpath("//a[text()= 'Create new account']")).click();
-		
-		List <WebElement> months = driver.findElements(By.xpath("//select[@id='month']//child::option"));
-		// If you use this locator: //select[@id='month'] then it will print in separate rows instead of one row.
-		List <String> allMonths = new ArrayList <String> ();
-		
-		for (int i =0; i < months.size(); i++) {
-			allMonths.add(months.get(i).getText());
-		}
-		System.out.print(allMonths);
-	}
+public class TestClass{
+   public static void main(String[] args) throws InterruptedException {
+	   System.setProperty("webdriver.chrome.driver",
+			      ".\\drivers\\\\chromedriver.exe");
+			      WebDriver driver = new ChromeDriver();
+			      driver.get("https://www.tutorialspoint.com/index.htm");
+			      //get current system time
+			      long s = System.currentTimeMillis();
+			      // Javascript executor
+			      Thread.sleep(3000);
+			      JavascriptExecutor j = (JavascriptExecutor) driver;
+			      //executeAsyncScript method to set timeout
+			      j.executeAsyncScript
+			      ("window.setTimeout(arguments[arguments.length - 1], 800);");
+			      System.out.println(
+			      "Time Elapsed is: " + (System.currentTimeMillis() - s));
+			      driver.quit();
+   }
 }

@@ -15,33 +15,33 @@ public class S_12_27_4_IteratorMethod {
 		list.add("A");
 		list.add("B");
 		list.add("C");
-		
+
 		@SuppressWarnings("unused")
 		Iterator<String> it = list.iterator();
-//		while (it.hasNext()) {
-//			System.out.println(it.next());
-//		}
-		
-		System.out.println(list);
-		
-//		it.remove (); // remove is gonna remove the last value
-//		System.out.println(list);
-		
-		Set<String> list2 = new HashSet<String>();
-		list2.add("tt");
-		list2.add("yy");
-		list2.add("pp");
-		
-		Iterator<String> it2 = list2.iterator();
-		while(it2.hasNext()){
-			System.out.println(it2.next());
+		while (it.hasNext()) {
+			it.next();
 		}
-		
+		System.out.println(list);
+
+		it.remove(); // remove is gonna remove the last value
+		System.out.println(list);
+
+		Set<String> list2 = new HashSet<String>();
+		list2.add("1");
+		list2.add("2");
+		list2.add("3");
+		list2.add("4");
+
+		Iterator<String> it2 = list2.iterator();
+		while (it2.hasNext()) {
+			it2.next();
+		}
+		System.out.println(list2);
+
 		it2.remove();
 		System.out.println(list2);
 
 	}
 }
-
 
 

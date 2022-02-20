@@ -7,7 +7,7 @@ public class S_12_29_1_PracticingGetDomProperty extends S_12_28_3_Utilities {
 	
     public static void main(String[] args) throws InterruptedException {
         
-    	launchBrowser("https://www.facebook.com/");
+    	launchChrome("https://www.facebook.com/");
 		WebElement element = driver.findElement(By.xpath("//a[text()='Create new account']"));
 		System.out.println(element.getDomProperty("id"));
 		

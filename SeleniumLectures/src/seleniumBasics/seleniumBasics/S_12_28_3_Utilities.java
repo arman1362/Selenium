@@ -12,12 +12,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class S_12_28_3_Utilities {
-
+	
 	public static WebDriver driver;
 
 	public static void compareText(String actualText, String expectedText) {
@@ -29,7 +31,7 @@ public class S_12_28_3_Utilities {
 		}
 	}
 
-	public static void launchBrowser(String url) {
+	public static void launchChrome(String url) {
 		System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -37,7 +39,25 @@ public class S_12_28_3_Utilities {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.get(url);
 	}
-	
+
+//	public static void launchFirefox(String url) { // does not work for some reason. 
+//		System.setProperty("webdriver.gecko.driver", ".\\drivers\\geckodriver.exe");
+//		driver = new FirefoxDriver();
+//		driver.manage().window().maximize();
+//		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//		driver.get(url);
+//	}
+//
+//	public static void launchEdge(String url) { // does not work for some reason. 
+//		System.setProperty("webdriver.edge.driver", ".\\drivers\\msedgedriver.exe");
+//		driver = new EdgeDriver();
+//		driver.manage().window().maximize();
+//		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//		driver.get(url);
+//	}
+
 	public static void waitUntilElementToBeClickable(WebDriver driver, WebElement element) {
 		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(20))
@@ -45,41 +65,66 @@ public class S_12_28_3_Utilities {
 				.ignoring(NoSuchElementException.class);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
-	
-	public static void waitForElement (WebElement element, long timeOutInSeconds) {
-		WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds (20));
+
+	public static void waitForElement(WebElement element, long timeOutInSeconds) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
-	
+
 	public static void takeScreenShot(String fileName) throws IOException {
 		// we need to create a folder at project level and store the path here so that
 		// when even we take screenshots, they are all saved in that specific folder
 		String path = ".\\screenshots\\";
 		// I create object of the file class
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		// After taking the screenshot, take the file and store it in a location in my computer
+		// After taking the screenshot, take the file and store it in a location in my
+		// computer
 		// and also I want to provide the file_name and the extension
 		FileUtils.copyFile(file, new File(path + fileName + ".png"));
 	}
-	
+
 	// JavaScript Executor
-		// sometimes, Selenium WebDriver can encounter problems interacting with a few web elements. For instance, 
-		// the user opens a URL and there is an unexpected pop-up that will prevent the WebDriver from locating a 
-		// specific element and produce inaccurate results. This is where JavascriptExecutor comes into the picture.
+	// sometimes, Selenium WebDriver can encounter problems interacting with a few
+	// web elements. For instance,
+	// the user opens a URL and there is an unexpected pop-up that will prevent the
+	// WebDriver from locating a
+	// specific element and produce inaccurate results. This is where
+	// JavascriptExecutor comes into the picture.
+
+	// JavaScriptExecutor Methods:
+	// 1- executeAsyncScript: With Asynchronous script, your page renders more
+	// quickly. Instead of forcing
+	// users to wait for a script to download before the page renders, this function
+	// will execute an asynchronous
+	// piece of JavaScript in the context of the currently selected frame or window
+	// in Selenium.
 	
-	// JavaScriptExecutor Methods: 
-		// 1- executeAsyncScript: With Asynchronous script, your page renders more quickly. Instead of forcing 
-		// users to wait for a script to download before the page renders, this function will execute an asynchronous 
-		// piece of JavaScript in the context of the currently selected frame or window in Selenium. 
-	
-		// 2- executeScript: This method executes JavaScript in the context of the currently selected frame or window 
-		// in Selenium. The script used in this method runs in the body of an anonymous function (a function without 
-		// a name). We can also pass complicated arguments to it. The script can return values. Data types returned are
-			//	Boolean
-			//	Long
-			//	String
-			//	List
-			//	WebElement.
+	public static void executeAsyncScript() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", ".\\drivers\\\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.tutorialspoint.com/index.htm");
+		// get current system time
+		long s = System.currentTimeMillis();
+		// Javascript executor
+		Thread.sleep(3000);
+		JavascriptExecutor j = (JavascriptExecutor) driver;
+		// executeAsyncScript method to set timeout
+		j.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 800);");
+		System.out.println("Time Elapsed is: " + (System.currentTimeMillis() - s));
+		driver.quit();
+	}
+
+	// 2- executeScript: This method executes JavaScript in the context of the
+	// currently selected frame or window
+	// in Selenium. The script used in this method runs in the body of an anonymous
+	// function (a function without
+	// a name). We can also pass complicated arguments to it. The script can return
+	// values. Data types returned are
+	// Boolean
+	// Long
+	// String
+	// List
+	// WebElement.
 
 	// if the .click() does not work, then we get the help JSExecuter
 	public static void clickWithJSE(WebElement element) {
@@ -117,12 +162,12 @@ public class S_12_28_3_Utilities {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].value='" + value + "'", element);
 	}
-	
+
 	public static void scrollDownBy() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,100)");
 	}
-	
+
 	public static void scrollUpBy() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,-1000)");
